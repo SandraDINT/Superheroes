@@ -10,6 +10,16 @@
     <Window.Resources>
         <local:ConverterHeroImage x:Key="conversorImagenHeroe"></local:ConverterHeroImage>
         <local:ConverterBackground x:Key="conversorBackground"></local:ConverterBackground>
+
+        <Style TargetType="Image" x:Key="imagesArriba">
+            <Setter Property="Width" Value="20"></Setter>
+        </Style>
+        <Style TargetType="Image"
+               x:Key="imagesFlechas">
+            <Setter Property="Width"
+                    Value="20"></Setter>
+            <Setter Property="Source" Value="Assets/arrow.png"></Setter>
+        </Style>
     </Window.Resources>
     <DockPanel x:Name="dockPanelPrincipal"
                Background="{Binding Path=Heroe, 
@@ -22,39 +32,35 @@
             <TextBlock x:Name="textBlockNombre"
                        Text="{Binding Path=Nombre}"
                        DockPanel.Dock="Left"/>
-            <Image Source="Assets/xmen.png"
+            <Image Style="{StaticResource imagesArriba}"
+                Source="Assets/xmen.png"
                 Visibility="{Binding Path=Xmen, 
                 Converter={StaticResource conversorImagenHeroe}}"
-                   DockPanel.Dock="Right"
-                   Width="30"/>
-            <Image Source="Assets/avengers.png"
+                   DockPanel.Dock="Right"/>
+            <Image Style="{StaticResource imagesArriba}"
+                Source="Assets/avengers.png"
                    Visibility="{Binding Path=Vengador, 
                 Converter={StaticResource conversorImagenHeroe}}"
-                   DockPanel.Dock="Right"
-                   Width="20" />
+                   DockPanel.Dock="Right" />
         </DockPanel>
         
         <StackPanel DockPanel.Dock="Bottom"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
-            <Image x:Name="imageAtras"
-                Source="Assets/arrow.png"
-                   Width="20"
+            <Image Style="{StaticResource imagesFlechas}"
+                x:Name="imageAtras"
                    MouseLeftButtonDown="imageAtras_MouseLeftButtonDown"/>
             <TextBlock x:Name="textBlockNumeroActual"/>
             <TextBlock Text="/"/>
             <TextBlock x:Name="textBlockTotalHeros" />
-            <Image Source="Assets/arrow.png"
+            <Image Style="{StaticResource imagesFlechas}"
                    FlowDirection="RightToLeft"
-                   Width="20"
                    MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         </StackPanel>
         <Image  x:Name="imageSuperHeroe"
-            Source="{Binding Path=Imagen}" 
+                Source="{Binding Path=Imagen}"
                 Stretch="Fill"
                 Margin="10,10,10,0"
-                Height="344"
                 VerticalAlignment="Top" />
-
     </DockPanel>
 </Window>
