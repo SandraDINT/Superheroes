@@ -55,8 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ConverterBackground.cs" />
-    <Compile Include="ConverterHeroImage.cs" />
+    <Compile Include="Conversores\ConverterBackground.cs" />
+    <Compile Include="Conversores\ConverterHeroImage.cs" />
     <Compile Include="Superheroe.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
