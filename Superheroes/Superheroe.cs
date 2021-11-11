@@ -10,35 +10,45 @@ namespace Superheroes
         public string Nombre
         {
             get { return _nombre; }
-            set { _nombre = value; }
+            set { _nombre = value;
+                NotifyPropertyChanged("Nombre");
+            }
         }
 
         private string _imagen;
         public string Imagen
         {
             get { return _imagen; }
-            set { _imagen = value; }
+            set { _imagen = value;
+                NotifyPropertyChanged("Imagen");
+            }
         }
 
         private bool _vengador;
         public bool Vengador
         {
             get { return _vengador; }
-            set { _vengador = value; }
+            set { _vengador = value;
+                NotifyPropertyChanged("Vengador");
+            }
         }
 
         private bool _xmen;
         public bool Xmen
         {
             get { return _xmen; }
-            set { _xmen = value; }
+            set { _xmen = value;
+                NotifyPropertyChanged("Xmen");
+            }
         }
 
         private bool _heroe;
         public bool Heroe
         {
             get { return _heroe; }
-            set { _heroe = value; }
+            set { _heroe = value;
+                NotifyPropertyChanged("Heroe");
+            }
         }
 
 
@@ -71,6 +81,10 @@ namespace Superheroes
             ejemplos.Add(spiderman);
 
             return ejemplos;
+        }
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

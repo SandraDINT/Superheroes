@@ -22,15 +22,14 @@
         </Style>
     </Window.Resources>
     <DockPanel x:Name="dockPanelPrincipal"
-               Background="{Binding Path=Heroe, 
+               Background="{Binding Path=SuperheroeActual.Heroe, 
             Converter={StaticResource conversorBackground}}"
-               Height="419"
                VerticalAlignment="Top">
         <DockPanel 
             DockPanel.Dock="Top"
                    LastChildFill="False">
             <TextBlock x:Name="textBlockNombre"
-                       Text="{Binding Path=Nombre}"
+                       Text="{Binding Path=SuperheroeActual.Nombre}"
                        DockPanel.Dock="Left"
                        FontSize="36"
                        Foreground="White">
@@ -40,12 +39,12 @@
             </TextBlock>
             <Image Style="{StaticResource imagesArriba}"
                 Source="Assets/xmen.png"
-                Visibility="{Binding Path=Xmen, 
+                   Visibility="{Binding Path=SuperheroeActual.Xmen, 
                 Converter={StaticResource conversorImagenHeroe}}"
                    DockPanel.Dock="Right"/>
             <Image Style="{StaticResource imagesArriba}"
                 Source="Assets/avengers.png"
-                   Visibility="{Binding Path=Vengador, 
+                   Visibility="{Binding Path=SuperheroeActual.Vengador, 
                 Converter={StaticResource conversorImagenHeroe}}"
                    DockPanel.Dock="Right" />
         </DockPanel>
@@ -56,15 +55,17 @@
             <Image Style="{StaticResource imagesFlechas}"
                 x:Name="imageAtras"
                    MouseLeftButtonDown="imageAtras_MouseLeftButtonDown"/>
-            <TextBlock x:Name="textBlockNumeroActual"/>
+            <TextBlock x:Name="textBlockNumeroActual"
+                       Text="{Binding Path=ContadorHeroeActual}"/>
             <TextBlock Text="/"/>
-            <TextBlock x:Name="textBlockTotalHeros" />
+            <TextBlock x:Name="textBlockTotalHeros"
+                       Text="{Binding Path=TotalHeroes}"/>
             <Image Style="{StaticResource imagesFlechas}"
                    FlowDirection="RightToLeft"
                    MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         </StackPanel>
         <Image  x:Name="imageSuperHeroe"
-                Source="{Binding Path=Imagen}"
+                Source="{Binding Path=SuperheroeActual.Imagen}"
                 Stretch="Fill"
                 Margin="10,10,10,0"
                 VerticalAlignment="Top" />
