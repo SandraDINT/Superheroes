@@ -94,10 +94,10 @@
             </Style.Triggers>
         </Style>
         <!---->
-        <!--Animación textblock nombre superheroe-->
+        <!--Animación AGRANDAR textblock nombre superheroe-->
         <Style TargetType="TextBlock" x:Key="triggerNombreSuperheroe">
             <Style.Triggers>
-                <EventTrigger RoutedEvent="IsMouseOver">
+                <EventTrigger RoutedEvent="MouseEnter">
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation 
@@ -108,9 +108,20 @@
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                             To="36"
+                                             Duration="0:0:2">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
             </Style.Triggers>
         </Style>
         
+
     </Window.Resources>
     <DockPanel x:Name="dockPanelPrincipal"
                Style="{StaticResource dockPanelFondoHeroe}"
@@ -118,6 +129,7 @@
         <DockPanel DockPanel.Dock="Top"
                    LastChildFill="False">
             <TextBlock x:Name="textBlockNombre"
+                       Style="{StaticResource triggerNombreSuperheroe}"
                        Text="{Binding Path=SuperheroeActual.Nombre}"
                        DockPanel.Dock="Left"
                        FontSize="36"
