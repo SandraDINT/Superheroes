@@ -149,17 +149,21 @@
         <StackPanel DockPanel.Dock="Bottom"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
-            <Image Style="{StaticResource imagesFlechas}"
-                   x:Name="imageAtras"
-                   MouseLeftButtonDown="imageAtras_MouseLeftButtonDown" />
+            <Button Command="{Binding Path=RetrocederCommand}"
+                    Template="{DynamicResource ButtonTemplate}">
+                <Image Style="{StaticResource imagesFlechas}"
+                       x:Name="imageAtras"/>
+            </Button>
             <TextBlock x:Name="textBlockNumeroActual"
                        Text="{Binding Path=ContadorHeroeActual}" />
             <TextBlock Text="/" />
             <TextBlock x:Name="textBlockTotalHeros"
                        Text="{Binding Path=TotalHeroes}" />
-            <Image Style="{StaticResource imagesFlechas}"
-                   FlowDirection="RightToLeft"
-                   MouseLeftButtonDown="Image_MouseLeftButtonDown" />
+            <Button Command="{Binding Path=SiguienteCommand}"
+                    Template="{DynamicResource ButtonTemplate}">
+                <Image Style="{StaticResource imagesFlechas}"
+                       FlowDirection="RightToLeft"/>
+            </Button>
         </StackPanel>
         <Border Margin="10,10,10,0">
             <Image  Style="{StaticResource imagenSuperheroe}"

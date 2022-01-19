@@ -27,16 +27,5 @@ namespace Superheroes
             InitializeComponent();
             this.DataContext = vm;
         }
-
-        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            vm.Avanzar();
-            
-        }
-
-        private void imageAtras_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            vm.Retroceder();
-        }
     }
 }

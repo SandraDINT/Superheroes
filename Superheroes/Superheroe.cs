@@ -1,17 +1,18 @@
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Superheroes
 {
-    class Superheroe : INotifyPropertyChanged
+    class Superheroe : ObservableObject
     {
         private string _nombre;
 
         public string Nombre
         {
             get { return _nombre; }
-            set { _nombre = value;
-                NotifyPropertyChanged("Nombre");
+            set { 
+                SetProperty(ref _nombre, value);
             }
         }
 
@@ -19,8 +20,8 @@ namespace Superheroes
         public string Imagen
         {
             get { return _imagen; }
-            set { _imagen = value;
-                NotifyPropertyChanged("Imagen");
+            set { 
+                SetProperty(ref _imagen, value);
             }
         }
 
@@ -28,8 +29,8 @@ namespace Superheroes
         public bool Vengador
         {
             get { return _vengador; }
-            set { _vengador = value;
-                NotifyPropertyChanged("Vengador");
+            set {
+                SetProperty(ref _vengador, value);
             }
         }
 
@@ -37,8 +38,8 @@ namespace Superheroes
         public bool Xmen
         {
             get { return _xmen; }
-            set { _xmen = value;
-                NotifyPropertyChanged("Xmen");
+            set {
+                SetProperty(ref _xmen, value);
             }
         }
 
@@ -46,8 +47,8 @@ namespace Superheroes
         public bool Heroe
         {
             get { return _heroe; }
-            set { _heroe = value;
-                NotifyPropertyChanged("Heroe");
+            set {
+                SetProperty(ref _heroe, value);
             }
         }
 
@@ -64,27 +65,6 @@ namespace Superheroes
             Vengador = vengador;
             Xmen = xmen;
             Heroe = heroe;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public static List<Superheroe> GetSamples()
-        {
-            List<Superheroe> ejemplos = new List<Superheroe>();
-
-            Superheroe ironman = new Superheroe("Ironman", @"https://dossierinteractivo.com/wp-content/uploads/2021/01/Iron-Man.png", true, false, true);
-            Superheroe kingpin = new Superheroe("Kingpin", @"https://www.comicbasics.com/wp-content/uploads/2017/09/Kingpin.jpg", false, false, false);
-            Superheroe spiderman = new Superheroe("Spiderman", @"https://wipy.tv/wp-content/uploads/2019/08/destino-de-%E2%80%98Spider-Man%E2%80%99-en-los-Comics.jpg", true, true, true);
-
-            ejemplos.Add(ironman);
-            ejemplos.Add(kingpin);
-            ejemplos.Add(spiderman);
-
-            return ejemplos;
-        }
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        }  
     }
 }

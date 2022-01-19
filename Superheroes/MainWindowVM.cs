@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,17 +10,33 @@ using System.Windows;
 
 namespace Superheroes
 {
-    class MainWindowVM : INotifyPropertyChanged
+    class MainWindowVM : ObservableObject
     {
-        private Superheroe _superheroeActual;
+        
+        private List<Superheroe> lista;
+        private ListaSuperheroesService servicioHeroes;
 
+        public RelayCommand SiguienteCommand { get; }
+        public RelayCommand RetrocederCommand { get; }
+
+        public MainWindowVM()
+        {
+            servicioHeroes = new ListaSuperheroesService();
+            lista = servicioHeroes.GetSamples();
+            SuperheroeActual = lista.FirstOrDefault();
+            ContadorHeroeActual = 1;
+            TotalHeroes = lista.Count;
+            SiguienteCommand = new RelayCommand(Avanzar);
+            RetrocederCommand = new RelayCommand(Retroceder);
+        }
+
+        private Superheroe _superheroeActual;
         public Superheroe SuperheroeActual
         {
             get { return _superheroeActual; }
             set
             {
-                _superheroeActual = value;
-                NotifyPropertyChanged("SuperheroeActual");
+                SetProperty(ref _superheroeActual, value);
             }
         }
 
@@ -27,8 +45,8 @@ namespace Superheroes
         public int ContadorHeroeActual
         {
             get { return _contadorHeroeActual; }
-            set { _contadorHeroeActual = value;
-                NotifyPropertyChanged("ContadorHeroeActual");
+            set {
+                SetProperty(ref _contadorHeroeActual, value);
             }
         }
 
@@ -37,19 +55,9 @@ namespace Superheroes
         public int TotalHeroes
         {
             get { return _totalHeroes; }
-            set { _totalHeroes = value;
-                NotifyPropertyChanged("TotalHeroes");
+            set {
+                SetProperty(ref _totalHeroes, value);
             }
-        }
-
-        private List<Superheroe> lista = Superheroe.GetSamples();
-
-        public MainWindowVM()
-        {
-            
-            SuperheroeActual = lista.FirstOrDefault();
-            ContadorHeroeActual = 1;
-            TotalHeroes = lista.Count;
         }
 
         public void Avanzar()
@@ -70,12 +78,5 @@ namespace Superheroes
             }
 
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
     }
 }
